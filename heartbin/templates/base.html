@@ -11,6 +11,7 @@
     {% endblock title %}
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token }}" />
   <meta name="description"
         content="Built with Django and DRF, this application allows users to anonymously share and receive feedback - from the heart, even when it’s hard." />
   <meta name="author"
@@ -31,11 +32,13 @@
 
 
 {% endblock css %}
-<!-- Le javascript
-    ================================================== -->
-{# Placed at the top of the document so pages load faster with defer #}
+
 {% block javascript %}
 
+<script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
 
 <!-- Bootstrap JS -->
 <script defer
@@ -68,7 +71,7 @@
                 aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'home' %}">heartbin</a>
+        <a class="navbar-brand" href="{% url 'home' %}"><span style='color:#0d6efd'>Heart</span>bin</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">

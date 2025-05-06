@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+
+    <div id='inboxLoading' class="d-flex justify-content-center align-items-center" style="height: 70vh;">
+      <div class="text-center p-5">
+        Please wait <img class='loading' src="{% static 'images/loading.svg' %}" alt="Loading...">
+      </div>
+    </div>
+
+    <!-- Inbox replies form -->
+    <ul id="repliesList" class='list-group' style='display:none;margin-top:6rem;'></ul>
+
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/answers.js' %}"></script>
+{% endblock %}
