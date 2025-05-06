@@ -276,3 +276,4 @@ heartbin/media/
 .env
 .envs/*
 !.envs/.local/
+/.ruff_cache/
