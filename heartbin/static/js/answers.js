@@ -7,7 +7,7 @@ $(document).ready(function(){
     }
     const inbox_uuid = urlSegments[urlSegments.length - 3];
     const inbox_key = urlSegments[urlSegments.length - 1];
-    
+
     // Attempt to retrieve inbox answers, pass key as a header
     $.ajax({
         method: "GET",

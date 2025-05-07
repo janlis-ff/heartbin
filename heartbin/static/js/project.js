@@ -56,7 +56,7 @@ $(document).on("submit", "#createForm", (e) => {
         allow_anonymous: form.find("[name=allowAnonymous]").is(":checked"),
         expires_at: form.find("[name=expiresAt]").val(),
     }
-    
+
     $.ajax({
         method: "POST",
         url: API_URL + "inboxes/",
