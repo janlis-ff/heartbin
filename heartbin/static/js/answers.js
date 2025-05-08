@@ -1,25 +1,35 @@
-$(document).ready(function(){
 
-    // Get URL segments elements
+// Handle submitting inbox password
+$(document).on("click", "#inboxPasswordSubmit", function(){
+
+    // Retrieve inbox uuid from URL
     const urlSegments = window.location.pathname.split('/');
     if (urlSegments[urlSegments.length - 1] === '') {
         urlSegments.pop();
     }
-    const inbox_uuid = urlSegments[urlSegments.length - 3];
-    const inbox_key = urlSegments[urlSegments.length - 1];
+    const inbox_uuid = urlSegments[urlSegments.length - 2];
+    const inbox_secret = $("#inboxPassword").val();
+    const button = $(this);
 
-    // Attempt to retrieve inbox answers, pass key as a header
-    $.ajax({
-        method: "GET",
-        url: API_URL + "inboxes/" + inbox_uuid + "/answers/?key=" + inbox_key,
-        contentType: "application/json",
-        success: (response) => {
-            handle_inbox_retrieve_success(response);
-        },
-    });
+    button.prop("disabled", true);
 
 });
 
+function get_inbox_data(inbox_uuid){
+    return $.ajax({
+        method: "GET",
+        url: API_URLS.inbox(inbox_uuid),
+        contentType: "application/json",
+    });
+}
+
+function get_inbox_replies(inbox_uuid, inbox_secret){
+    return $.ajax({
+        method: "GET",
+        url: API_URLS.inboxReplies(inbox_uuid),
+        contentType: "application/json",
+    });
+}
 
 function handle_inbox_retrieve_success(response) {
 

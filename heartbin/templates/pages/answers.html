@@ -5,13 +5,25 @@
 
 {% block content %}
 
-    <div id='inboxLoading' class="d-flex justify-content-center align-items-center" style="height: 70vh;">
-      <div class="text-center p-5">
-        Please wait <img class='loading' src="{% static 'images/loading.svg' %}" alt="Loading...">
+<div class="modal show d-block" id="heartbinCreatedModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Your inbox</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <p>Please provide the password to unlock your inbox</p>
+          <input type="password" id="inboxPassword" class="form-control" placeholder="Password">
+      </div>
+      <div class="modal-footer">
+        <button id="inboxPasswordSubmit" type="button" class="btn btn-primary">Continue</button>
       </div>
     </div>
+  </div>
+</div>
 
-    <!-- Inbox replies form -->
+    <!-- Inbox replies list -->
     <ul id="repliesList" class='list-group' style='display:none;margin-top:6rem;'></ul>
 
 {% endblock content %}

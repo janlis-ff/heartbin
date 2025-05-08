@@ -1,11 +1,11 @@
 $(document).ready(function(){
 
     const url_segments = window.location.pathname.split("/");
-    const reply_uuid = url_segments[url_segments.length - 1] || url_segments[url_segments.length - 2];
+    const inbox_uuid = url_segments[url_segments.length - 1] || url_segments[url_segments.length - 2];
 
     $.ajax({
         method: "GET",
-        url: API_URL + "inboxes/" + reply_uuid + "/",
+        url: API_URLS.inbox(inbox_uuid),
         contentType: "application/json",
         success: (response) => {
             handle_inbox_retrieve_success(response);
