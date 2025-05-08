@@ -3,16 +3,44 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
+from django.urls import re_path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView
 from drf_spectacular.views import SpectacularSwaggerView
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path(settings.ADMIN_URL, admin.site.urls),
-    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
-    path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
+    path(
+        "",
+        TemplateView.as_view(template_name="pages/home.html"),
+        name="home",
+    ),
+    re_path(
+        "^inbox/(?P<inbox_uuid>[0-9a-f-]+)/$",
+        TemplateView.as_view(template_name="pages/reply.html"),
+        name="inbox-reply",
+    ),
+    re_path(
+        "^inbox/(?P<inbox_uuid>[0-9a-f-]+)/answers/$",
+        TemplateView.as_view(template_name="pages/answers.html"),
+        name="inbox-answers",
+    ),
+    # Django admin URL
+    path(
+        settings.ADMIN_URL,
+        admin.site.urls,
+    ),
+    # Media
+    *static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT,
+    ),
+    # API URLs
+    path(
+        "api/schema/",
+        SpectacularAPIView.as_view(),
+        name="api-schema",
+    ),
     path(
         "api/docs/",
         SpectacularSwaggerView.as_view(url_name="api-schema"),

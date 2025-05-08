@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+
+    <div id='inboxLoading' class="d-flex justify-content-center align-items-center" style="height: 70vh;">
+      <div class="text-center p-5">
+        Please wait <img class='loading' src="{% static 'images/loading.svg' %}" alt="Loading...">
+      </div>
+    </div>
+
+    <!-- Inbox reply form -->
+    <form id='replyForm' class='container container-lg' style="margin-top: 12rem;display: none;">
+        <h3 class='inboxTitle'>Reply to <span id='replyTo'></span></h3>
+        <h4 class='inboxQuestion'></h4>
+
+        <div class="mb-3">
+            <label for="replyText" class="form-label">Your reply</label>
+            <textarea name="replyText" class="form-control" id="replyText" rows="4"></textarea>
+        </div>
+        <div class='mb-3'>
+            <label for="replySignature" class="form-label">Signature</label>
+            <input type="text" name="replySignature" class="form-control" id="replySignature" placeholder="Leave empty for anonymous reply">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create your Heartbin</button>
+    </form>
+
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/reply.js' %}"></script>
+{% endblock %}
